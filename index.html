@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        .container {
+            width: 50%;
+            height: 100vh;
+            background-color: aliceblue;
+        }
+
+        @media screen and (max-width: 824px) {
+            .container {
+                width: 100%;
+            }
+        }
+
+        #header {
+            display: flex;
+            background-color: gray;
+            justify-content: space-between;
+            justify-self: self-start;
+            width: 100%;
+            height: 10%;
+        }
+
+        #header img {
+            display: inline-block;
+            width: 14%;
+            margin: 0 auto;
+            padding: 0;
+            align-self: start;
+        }
+
+        #header h3 {
+            display: block;
+            text-align: center;
+            line-height: 6rem;
+            font-size: 1.5rem;
+            width: 50%;
+            margin: 0 auto;
+            padding: 0;
+            align-self: end;
+        }
+
+        #navi {
+            display: flex;
+            min-width: 100%;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        ol {
+            list-style: none;
+        }
+
+        #list {
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            height: 100%;
+            line-height: 80px;
+            background-color: aquamarine;
+        }
+
+        #list li {
+            display: flex;
+            width: 80%;
+            background-color: aqua;
+            padding: 20px;
+            margin: 20px;
+        }
+
+        #name {
+            background-color: ghostwhite;
+            display: block;
+            width: 200%;
+            text-align: center;
+            line-height: 4rem;
+            text-wrap: balance;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="header">
+            <img src="logo.jpg" alt="">
+            <h3>Away Pyay (အဝေးပြေး)</h3>
+        </div>
+        <div class="nav" id="navi"></div>
+        <ul id="list">
+        </ul>
+    </div>
+    <script src="init.js"></script>
+    <script src="towns.js"></script>
+    <script src="stations.js"></script>
+    <script src="bus_lines.js"></script>
+    <script>
+        var current_town, current_station, current_bus_line;
+        function init() {
+            document.getElementById('navi').innerHTML = '';
+            document.getElementById('list').innerHTML = initial_list.map((item) => {
+                return `<li><button onclick="list('${encodeURIComponent(JSON.stringify(item))}')">${item.en_name}</button></li>`;
+            }).join(' ');
+        }
+        init();
+
+        function list(data) {
+            var item = JSON.parse(decodeURIComponent(data))
+            switch (item.id) {
+                case 1:
+                    townList();
+                    break;
+                case 2:
+                    stationList();
+                    break;
+                case 3:
+                    buslineList();
+                    break;
+            }
+        }
+
+        function townList() {
+            document.getElementById('navi').innerHTML = `<button onclick="init()">Home</button>`;
+            document.getElementById('list').innerHTML = towns.map((town) => {
+                return `<li><button onclick="getStationsByTown('${encodeURIComponent(JSON.stringify(town))}')">${town.en_name}</button></li>`;
+            }).join(' ');
+        }
+        function getStationsByTown(data) {
+            var town = JSON.parse(decodeURIComponent(data))
+            current_town = town;
+            document.getElementById('navi').innerHTML += `<button onclick="townList()">Towns</button>`;
+            document.getElementById('list').innerHTML = town.stations.map((station) => {
+                return `<li><button onclick="getBusLinesByStation('${encodeURIComponent(JSON.stringify(station))}',1)">${station.en_name}</button></li>`;
+            }).join(' ');
+        };
+        function getBusLinesByStation(data, source) {
+            var station = JSON.parse(decodeURIComponent(data))
+            document.getElementById('navi').innerHTML += `<button onclick="backStation(` + source + `)">Stations</button>`;
+            document.getElementById('list').innerHTML = station.bus_lines.map((bus_line) => {
+                return `<li><button onclick="getContactsByBusline('${encodeURIComponent(JSON.stringify(bus_line))}')">${bus_line.en_name}</button></li>`;
+            }).join(' ');
+        };
+        function backStation(source) {
+            switch (source) {
+                case 1:
+                    document.getElementById('navi').innerHTML = `<button onclick="init()">Home</button>`;
+                    getStationsByTown(JSON.stringify(current_town));
+                    break;
+                case 2:
+                    document.getElementById('navi').innerHTML = `<button onclick="init()">Home</button>`;
+                    stationList();
+                    break;
+            }
+
+        }
+        function getContactsByBusline(data) {
+            var bus_line = JSON.parse(decodeURIComponent(data))
+            document.getElementById('navi').innerHTML += `<div id="name">${bus_line.en_name}</div>`;
+            document.getElementById('list').innerHTML = bus_line.contacts.map((contact) => {
+                return `<li>
+                        ${contact.en_name}
+                        <ol>`+
+                    contact.phones.map((phone) => {
+                        return `<li><button>${phone}</button></li>`;
+                    }).join(' ') +
+
+                    `</ol>
+                    </li>`;
+            }).join(' ');
+        };
+
+        function stationList() {
+            document.getElementById('navi').innerHTML = `<button onclick="init()">Home</button>`;
+            document.getElementById('list').innerHTML = stations.map((station) => {
+                return `<li><button onclick="getBusLinesByStation('${encodeURIComponent(JSON.stringify(station))}', 2)">${station.en_name}</button></li>`;
+            }).join(' ');
+        }
+
+        function buslineList() {
+            document.getElementById('navi').innerHTML = `<button onclick="init()">Home</button>`;
+            document.getElementById('list').innerHTML = bus_lines.map((station) => {
+                return `<li><button onclick="getContactsByBusline('${encodeURIComponent(JSON.stringify(station))}')">${station.en_name}</button></li>`;
+            }).join(' ');
+        }
+    </script>
+</body>
+
+</html>
