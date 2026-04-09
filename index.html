@@ -76,6 +76,41 @@
             opacity: 0.85;
         }
 
+        /* Language toggle */
+        #lang-toggle {
+            display: flex;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid rgba(255,255,255,0.5);
+            flex-shrink: 0;
+        }
+
+        #lang-toggle button {
+            background: transparent;
+            border: none;
+            color: rgba(255,255,255,0.7);
+            font-family: inherit;
+            font-size: 0.75rem;
+            font-weight: 700;
+            cursor: pointer;
+            padding: 5px 10px;
+            line-height: 1;
+            height: auto;
+            width: auto;
+            transition: background 0.15s, color 0.15s;
+            letter-spacing: 0.5px;
+        }
+
+        #lang-toggle button.active {
+            background: rgba(255,255,255,0.9);
+            color: #c0392b;
+        }
+
+        #lang-toggle button:not(.active):hover {
+            background: rgba(255,255,255,0.2);
+            color: #fff;
+        }
+
         /* Navigation breadcrumb */
         #navi {
             display: flex;
@@ -102,6 +137,7 @@
             height: auto;
             width: auto;
             transition: background 0.15s;
+            font-family: inherit;
         }
 
         #navi button:hover {
@@ -151,7 +187,7 @@
             transform: translateY(-1px);
         }
 
-        /* Main nav buttons (Towns / Stations / Bus Lines) */
+        /* Main nav buttons */
         #list > li > button {
             display: flex;
             align-items: center;
@@ -242,6 +278,104 @@
             opacity: 0.9;
             transform: scale(0.99);
         }
+
+        /* Search */
+        #search-bar {
+            padding: 12px 16px;
+            background: #fff;
+            border-bottom: 1px solid #eee;
+            flex-shrink: 0;
+        }
+
+        #search-bar input {
+            width: 100%;
+            padding: 10px 14px 10px 38px;
+            border: 1.5px solid #e8ecef;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            color: #2c3e50;
+            background: #f8f9fa url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23aaa' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E") no-repeat 12px center;
+            outline: none;
+            transition: border-color 0.15s, box-shadow 0.15s;
+        }
+
+        #search-bar input:focus {
+            border-color: #e74c3c;
+            box-shadow: 0 0 0 3px rgba(231,76,60,0.1);
+            background-color: #fff;
+        }
+
+        #search-bar input::placeholder {
+            color: #aab;
+        }
+
+        /* Search results */
+        .search-section-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.8px;
+            color: #aaa;
+            padding: 4px 4px 2px;
+        }
+
+        .search-result-item {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            padding: 12px 16px !important;
+            cursor: pointer;
+            transition: background 0.15s !important;
+            border: none !important;
+            background: #fff !important;
+            width: 100%;
+            text-align: left;
+            font-family: inherit;
+            border-radius: 0 !important;
+            height: auto !important;
+            line-height: 1.4 !important;
+        }
+
+        .search-result-item::before {
+            display: none !important;
+        }
+
+        .search-result-item:hover {
+            background: #fdecea !important;
+        }
+
+        .search-result-primary {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .search-result-secondary {
+            font-size: 0.78rem;
+            color: #888;
+        }
+
+        .search-result-tag {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-right: 4px;
+        }
+
+        .tag-town   { background: #eaf4fb; color: #2980b9; }
+        .tag-station { background: #eafaf1; color: #27ae60; }
+        .tag-busline { background: #fef9e7; color: #d68910; }
+
+        .no-results {
+            text-align: center;
+            padding: 32px 16px;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 
@@ -252,10 +386,13 @@
             <div id="header-text">
                 <h3>Away Pyay <span>အဝေးပြေး</span></h3>
             </div>
+            <div id="lang-toggle">
+                <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
+                <button id="btn-mm" onclick="setLang('mm')">မြန်မာ</button>
+            </div>
         </div>
         <div class="nav" id="navi"></div>
-        <ul id="list">
-        </ul>
+        <ul id="list"></ul>
     </div>
     <script src="init.js"></script>
     <script src="towns.js"></script>
@@ -263,92 +400,129 @@
     <script src="bus_lines.js"></script>
     <script>
         var current_town, current_station, current_bus_line;
+        var lang = localStorage.getItem('lang') || 'en';
+
+        var t = {
+            en: {
+                home: 'Home',
+                towns: 'Towns',
+                stations: 'Stations',
+                buslines: 'Bus Lines',
+            },
+            mm: {
+                home: 'ပင်မစာမျက်နှာ',
+                towns: 'မြို့များ',
+                stations: 'ကားကွင်းများ',
+                buslines: 'ကားလိုင်းများ',
+            }
+        };
+
+        function name(item) {
+            return lang === 'mm' ? item.mm_name : item.en_name;
+        }
+
+        function setLang(l) {
+            lang = l;
+            localStorage.setItem('lang', l);
+            document.getElementById('btn-en').classList.toggle('active', l === 'en');
+            document.getElementById('btn-mm').classList.toggle('active', l === 'mm');
+            document.documentElement.lang = l === 'mm' ? 'my' : 'en';
+            // re-render current view
+            if (typeof currentView === 'function') currentView();
+        }
+
+        var currentView = null;
+
         function init() {
+            currentView = init;
             document.getElementById('navi').innerHTML = '';
             document.getElementById('list').innerHTML = initial_list.map((item) => {
-                return `<li><button onclick="list('${encodeURIComponent(JSON.stringify(item))}')">${item.en_name}</button></li>`;
-            }).join(' ');
+                return `<li><button onclick="list('${encodeURIComponent(JSON.stringify(item))}')">${name(item)}</button></li>`;
+            }).join('');
         }
-        init();
 
         function list(data) {
-            var item = JSON.parse(decodeURIComponent(data))
+            var item = JSON.parse(decodeURIComponent(data));
             switch (item.id) {
-                case 1:
-                    townList();
-                    break;
-                case 2:
-                    stationList();
-                    break;
-                case 3:
-                    buslineList();
-                    break;
+                case 1: townList(); break;
+                case 2: stationList(); break;
+                case 3: buslineList(); break;
             }
         }
 
         function townList() {
-            document.getElementById('navi').innerHTML = `<button onclick="init()">Home</button>`;
+            currentView = townList;
+            document.getElementById('navi').innerHTML =
+                `<button onclick="init()">${t[lang].home}</button>`;
             document.getElementById('list').innerHTML = towns.map((town) => {
-                return `<li><button onclick="getStationsByTown('${encodeURIComponent(JSON.stringify(town))}')">${town.en_name}</button></li>`;
-            }).join(' ');
+                return `<li><button onclick="getStationsByTown('${encodeURIComponent(JSON.stringify(town))}')">${name(town)}</button></li>`;
+            }).join('');
         }
-        function getStationsByTown(data) {
-            var town = JSON.parse(decodeURIComponent(data))
-            current_town = town;
-            document.getElementById('navi').innerHTML += `<button onclick="townList()">Towns</button>`;
-            document.getElementById('list').innerHTML = town.stations.map((station) => {
-                return `<li><button onclick="getBusLinesByStation('${encodeURIComponent(JSON.stringify(station))}',1)">${station.en_name}</button></li>`;
-            }).join(' ');
-        };
-        function getBusLinesByStation(data, source) {
-            var station = JSON.parse(decodeURIComponent(data))
-            document.getElementById('navi').innerHTML += `<button onclick="backStation(` + source + `)">Stations</button>`;
-            document.getElementById('list').innerHTML = station.bus_lines.map((bus_line) => {
-                return `<li><button onclick="getContactsByBusline('${encodeURIComponent(JSON.stringify(bus_line))}')">${bus_line.en_name}</button></li>`;
-            }).join(' ');
-        };
-        function backStation(source) {
-            switch (source) {
-                case 1:
-                    document.getElementById('navi').innerHTML = `<button onclick="init()">Home</button>`;
-                    getStationsByTown(JSON.stringify(current_town));
-                    break;
-                case 2:
-                    document.getElementById('navi').innerHTML = `<button onclick="init()">Home</button>`;
-                    stationList();
-                    break;
-            }
 
+        function getStationsByTown(data) {
+            var town = JSON.parse(decodeURIComponent(data));
+            current_town = town;
+            currentView = () => getStationsByTown(JSON.stringify(town));
+            document.getElementById('navi').innerHTML =
+                `<button onclick="init()">${t[lang].home}</button>` +
+                `<button onclick="townList()">${t[lang].towns}</button>`;
+            document.getElementById('list').innerHTML = town.stations.map((station) => {
+                return `<li><button onclick="getBusLinesByStation('${encodeURIComponent(JSON.stringify(station))}',1)">${name(station)}</button></li>`;
+            }).join('');
         }
+
+        function getBusLinesByStation(data, source) {
+            var station = JSON.parse(decodeURIComponent(data));
+            current_station = station;
+            currentView = () => getBusLinesByStation(JSON.stringify(station), source);
+            var backBtn = source === 1
+                ? `<button onclick="townList()">${t[lang].towns}</button>` +
+                  `<button onclick="getStationsByTown('${encodeURIComponent(JSON.stringify(current_town))}')">${name(current_town)}</button>`
+                : `<button onclick="stationList()">${t[lang].stations}</button>`;
+            document.getElementById('navi').innerHTML =
+                `<button onclick="init()">${t[lang].home}</button>` + backBtn;
+            document.getElementById('list').innerHTML = station.bus_lines.map((bus_line) => {
+                return `<li><button onclick="getContactsByBusline('${encodeURIComponent(JSON.stringify(bus_line))}')">${name(bus_line)}</button></li>`;
+            }).join('');
+        }
+
         function getContactsByBusline(data) {
-            var bus_line = JSON.parse(decodeURIComponent(data))
-            document.getElementById('navi').innerHTML += `<div id="name">${bus_line.en_name}</div>`;
+            var bus_line = JSON.parse(decodeURIComponent(data));
+            current_bus_line = bus_line;
+            currentView = () => getContactsByBusline(JSON.stringify(bus_line));
+            document.getElementById('navi').innerHTML += `<div id="name">${name(bus_line)}</div>`;
             document.getElementById('list').innerHTML = bus_line.contacts.map((contact) => {
                 return `<li id="info">
-                        <h3>${contact.en_name}<h3>
-                        <ol>`+
+                    <h3>${name(contact)}</h3>
+                    <ol>` +
                     contact.phones.map((phone) => {
-                        return `<li><button onclick="window.open('tel:` + phone + `');">${phone}</button></li>`;
-                    }).join(' ') +
-
-                    `</ol>
-                    </li>`;
-            }).join(' ');
-        };
+                        return `<li><button onclick="window.open('tel:${phone}');">${phone}</button></li>`;
+                    }).join('') +
+                    `</ol></li>`;
+            }).join('');
+        }
 
         function stationList() {
-            document.getElementById('navi').innerHTML = `<button onclick="init()">Home</button>`;
+            currentView = stationList;
+            document.getElementById('navi').innerHTML =
+                `<button onclick="init()">${t[lang].home}</button>`;
             document.getElementById('list').innerHTML = stations.map((station) => {
-                return `<li><button onclick="getBusLinesByStation('${encodeURIComponent(JSON.stringify(station))}', 2)">${station.en_name}</button></li>`;
-            }).join(' ');
+                return `<li><button onclick="getBusLinesByStation('${encodeURIComponent(JSON.stringify(station))}',2)">${name(station)}</button></li>`;
+            }).join('');
         }
 
         function buslineList() {
-            document.getElementById('navi').innerHTML = `<button onclick="init()">Home</button>`;
-            document.getElementById('list').innerHTML = bus_lines.map((station) => {
-                return `<li><button onclick="getContactsByBusline('${encodeURIComponent(JSON.stringify(station))}')">${station.en_name}</button></li>`;
-            }).join(' ');
+            currentView = buslineList;
+            document.getElementById('navi').innerHTML =
+                `<button onclick="init()">${t[lang].home}</button>`;
+            document.getElementById('list').innerHTML = bus_lines.map((bl) => {
+                return `<li><button onclick="getContactsByBusline('${encodeURIComponent(JSON.stringify(bl))}')">${name(bl)}</button></li>`;
+            }).join('');
         }
+
+        // apply saved language on load
+        setLang(lang);
+        init();
     </script>
 </body>
 
