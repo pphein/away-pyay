@@ -5,165 +5,242 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Away Pyay အဝေးပြေး</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Myanmar:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0 auto;
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
             padding: 0;
+        }
+
+        body {
+            background: #f0f4f8;
+            font-family: 'Poppins', 'Noto Sans Myanmar', sans-serif;
+            min-height: 100vh;
         }
 
         .container {
-            width: 50%;
-            height: 100vh;
-            background-color: aliceblue;
+            width: 480px;
+            min-height: 100vh;
+            margin: 0 auto;
+            background: #ffffff;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 0 40px rgba(0,0,0,0.1);
         }
 
-        @media screen and (min-width: 549px) and (max-width: 1200px) {
-            .container {
-                width: 80%;
-            }
-
-            #header h3 {
-                font-size: 1.3rem !important;
-                width: 60% !important;
-                line-height: 5rem !important;
-            }
-
-            #header img {
-                width: 40%;
-            }
-        }
-
-        @media screen and (min-width: 400px) and (max-width: 598px) {
+        @media screen and (max-width: 520px) {
             .container {
                 width: 100%;
-            }
-
-            #header h3 {
-                font-size: 1.2rem !important;
-                width: 60% !important;
-                line-height: 4rem !important;
-            }
-
-            #header img {
-                width: 40% !important;
+                box-shadow: none;
             }
         }
 
-        @media screen and (min-width: 265px) and (max-width: 400px) {
-            .container {
-                width: 100%;
-            }
-
-            #header {
-                height: 80px;
-            }
-
-            #header h3 {
-                font-size: 1rem !important;
-                width: 60% !important;
-                line-height: 2.2rem !important;
-            }
-
-            #header img {
-                width: 40% !important;
-            }
-        }
-
-        @media screen and (min-width: 0px) and (max-width: 264px) {
-            .container {
-                width: 100%;
-            }
-
-            #header h3 {
-                font-size: 0.6rem !important;
-                width: 50% !important;
-                line-height: 2.2rem !important;
-            }
-
-            #header img {
-                width: 50% !important;
-            }
-        }
-
+        /* Header */
         #header {
             display: flex;
-            background-color: gray;
-            justify-content: space-between;
-            justify-self: self-start;
-            width: 100%;
-            height: 12%;
+            align-items: center;
+            background: linear-gradient(135deg, #c0392b 0%, #e74c3c 50%, #e67e22 100%);
+            padding: 12px 16px;
+            gap: 12px;
+            flex-shrink: 0;
         }
 
         #header img {
-            display: inline-block;
-            width: 50%;
-            height: 100%;
-            margin: 0 auto;
-            padding: 0;
-            align-self: start;
+            width: 56px;
+            height: 56px;
+            object-fit: contain;
+            flex-shrink: 0;
+            border-radius: 8px;
+            background: rgba(255,255,255,0.15);
+            padding: 4px;
+        }
+
+        #header-text {
+            flex: 1;
         }
 
         #header h3 {
-            display: block;
-            text-align: center;
-            line-height: 5rem;
-            font-size: 1.5rem;
-            width: 50%;
-            margin: 0 auto;
-            padding: 0;
-            align-self: end;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.3;
+            letter-spacing: 0.3px;
         }
 
+        #header h3 span {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 400;
+            opacity: 0.85;
+        }
+
+        /* Navigation breadcrumb */
         #navi {
             display: flex;
-            min-width: 100%;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 4px;
+            padding: 10px 16px;
+            background: #fafafa;
+            border-bottom: 1px solid #eee;
+            min-height: 44px;
+            flex-shrink: 0;
         }
 
-        ul {
-            list-style: none;
+        #navi button {
+            background: none;
+            border: none;
+            color: #e74c3c;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 6px;
+            line-height: 1.4;
+            height: auto;
+            width: auto;
+            transition: background 0.15s;
         }
 
-        ol {
+        #navi button:hover {
+            background: #fdecea;
+        }
+
+        #navi button::before {
+            content: '← ';
+        }
+
+        #name {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #2c3e50;
+            padding: 4px 8px;
+            background: #fdecea;
+            border-radius: 6px;
+        }
+
+        /* List */
+        ul, ol {
             list-style: none;
         }
 
         #list {
             display: flex;
-            text-align: center;
-            justify-content: center;
-            align-items: center;
             flex-direction: column;
+            padding: 16px;
+            gap: 10px;
+            flex: 1;
         }
 
-        button {
-            display: block;
+        #list > li {
             width: 100%;
-            height: 100%;
-            line-height: 80px;
-            background-color: aquamarine;
+            background: #fff;
+            border: 1.5px solid #e8ecef;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: box-shadow 0.2s, transform 0.15s;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            padding: 0;
+            margin: 0;
         }
 
-        #list li {
+        #list > li:hover {
+            box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+            transform: translateY(-1px);
+        }
+
+        /* Main nav buttons (Towns / Stations / Bus Lines) */
+        #list > li > button {
             display: flex;
-            width: 80%;
-            background-color: aqua;
-            padding: 20px;
-            margin: 20px;
+            align-items: center;
+            justify-content: flex-start;
+            width: 100%;
+            height: auto;
+            line-height: 1.4;
+            padding: 16px 20px;
+            background: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            font-family: inherit;
+            transition: background 0.15s;
+            text-align: left;
+            gap: 12px;
         }
 
-        #name {
-            background-color: ghostwhite;
-            display: block;
-            width: 200%;
-            text-align: center;
-            line-height: 4rem;
-            text-wrap: balance;
+        #list > li > button::before {
+            content: '›';
+            font-size: 1.4rem;
+            color: #e74c3c;
+            line-height: 1;
+            flex-shrink: 0;
         }
 
+        #list > li > button:hover {
+            background: #fdecea;
+            color: #c0392b;
+        }
+
+        /* Contact info items */
         #info {
             display: flex;
-            justify-content: center;
             flex-direction: column;
+            padding: 14px 16px;
+            gap: 10px;
+            width: 100%;
+        }
+
+        #info h3 {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #2c3e50;
+            padding-bottom: 6px;
+            border-bottom: 1px solid #eee;
+        }
+
+        #info ol {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        #info ol li {
+            width: 100%;
+        }
+
+        #info ol li button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            height: auto;
+            line-height: 1.4;
+            padding: 10px 16px;
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #fff;
+            font-family: inherit;
+            transition: opacity 0.15s, transform 0.1s;
+            letter-spacing: 0.5px;
+        }
+
+        #info ol li button::before {
+            content: '📞';
+            font-size: 0.9rem;
+        }
+
+        #info ol li button:hover {
+            opacity: 0.9;
+            transform: scale(0.99);
         }
     </style>
 </head>
@@ -171,8 +248,10 @@
 <body>
     <div class="container">
         <div id="header">
-            <img src="logo.png" alt="">
-            <h3>Away Pyay (အဝေးပြေး)</h3>
+            <img src="logo.png" alt="Away Pyay Logo">
+            <div id="header-text">
+                <h3>Away Pyay <span>အဝေးပြေး</span></h3>
+            </div>
         </div>
         <div class="nav" id="navi"></div>
         <ul id="list">
