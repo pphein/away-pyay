@@ -5,9 +5,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Away Pyay အဝေးပြေး</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 56 56' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='56' height='56' rx='10' fill='%239B1C1C'/%3E%3Crect x='4' y='38' width='48' height='10' rx='3' fill='rgba(255,255,255,0.2)'/%3E%3Crect x='10' y='42' width='7' height='2' rx='1' fill='rgba(255,255,255,0.6)'/%3E%3Crect x='24' y='42' width='7' height='2' rx='1' fill='rgba(255,255,255,0.6)'/%3E%3Crect x='38' y='42' width='7' height='2' rx='1' fill='rgba(255,255,255,0.6)'/%3E%3Crect x='7' y='14' width='34' height='24' rx='4' fill='white'/%3E%3Crect x='9' y='12' width='30' height='5' rx='3' fill='rgba(255,255,255,0.85)'/%3E%3Crect x='10' y='17' width='7' height='6' rx='1.5' fill='%23B45309'/%3E%3Crect x='20' y='17' width='7' height='6' rx='1.5' fill='%23B45309'/%3E%3Crect x='30' y='17' width='7' height='6' rx='1.5' fill='%23B45309'/%3E%3Crect x='20' y='26' width='8' height='9' rx='1.5' fill='%23f0e0e0'/%3E%3Ccircle cx='14' cy='39' r='4' fill='%231C0A0A'/%3E%3Ccircle cx='14' cy='39' r='2' fill='%23786060'/%3E%3Ccircle cx='34' cy='39' r='4' fill='%231C0A0A'/%3E%3Ccircle cx='34' cy='39' r='2' fill='%23786060'/%3E%3Ccircle cx='44' cy='13' r='8' fill='%23B45309'/%3E%3Crect x='43' y='10' width='2' height='2' rx='1' fill='white'/%3E%3Crect x='43' y='13' width='2' height='5' rx='1' fill='white'/%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Myanmar:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary:       #9B1C1C;   /* deep crimson */
+            --primary-mid:   #B91C1C;
+            --primary-light: #EF4444;
+            --primary-bg:    #FEF2F2;   /* very light crimson tint */
+            --primary-border:#FECACA;
+
+            --gold:          #B45309;   /* warm amber — used for info badge, busline tag */
+            --gold-bg:       #FEF3C7;
+
+            --body-bg:       #FDF7F7;   /* warm cream, harmonizes with red */
+            --surface:       #FFFFFF;
+            --border:        #F3E4E4;   /* warm gray border */
+
+            --text:          #1C0A0A;   /* warm near-black */
+            --text-soft:     #78645F;   /* warm gray */
+
+            --phone:         #166534;   /* forest green — universal call color */
+            --phone-light:   #16A34A;
+        }
+
         *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
@@ -15,7 +37,7 @@
         }
 
         body {
-            background: #f0f4f8;
+            background: var(--body-bg);
             font-family: 'Poppins', 'Noto Sans Myanmar', sans-serif;
             min-height: 100vh;
         }
@@ -24,10 +46,10 @@
             width: 480px;
             min-height: 100vh;
             margin: 0 auto;
-            background: #ffffff;
+            background: var(--surface);
             display: flex;
             flex-direction: column;
-            box-shadow: 0 0 40px rgba(0,0,0,0.1);
+            box-shadow: 0 0 40px rgba(155,28,28,0.1);
         }
 
         @media screen and (max-width: 520px) {
@@ -41,20 +63,19 @@
         #header {
             display: flex;
             align-items: center;
-            background: linear-gradient(135deg, #c0392b 0%, #e74c3c 50%, #e67e22 100%);
+            background: linear-gradient(135deg, #7F1D1D 0%, #9B1C1C 50%, #B91C1C 100%);
             padding: 12px 16px;
             gap: 12px;
             flex-shrink: 0;
         }
 
-        #header img {
+        #header-icon {
             width: 56px;
             height: 56px;
-            object-fit: contain;
             flex-shrink: 0;
-            border-radius: 8px;
-            background: rgba(255,255,255,0.15);
-            padding: 4px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.12);
+            padding: 6px;
         }
 
         #header-text {
@@ -73,7 +94,7 @@
             display: block;
             font-size: 0.85rem;
             font-weight: 400;
-            opacity: 0.85;
+            opacity: 0.8;
         }
 
         /* Language toggle */
@@ -81,14 +102,14 @@
             display: flex;
             border-radius: 20px;
             overflow: hidden;
-            border: 2px solid rgba(255,255,255,0.5);
+            border: 2px solid rgba(255,255,255,0.4);
             flex-shrink: 0;
         }
 
         #lang-toggle button {
             background: transparent;
             border: none;
-            color: rgba(255,255,255,0.7);
+            color: rgba(255,255,255,0.65);
             font-family: inherit;
             font-size: 0.75rem;
             font-weight: 700;
@@ -103,11 +124,11 @@
 
         #lang-toggle button.active {
             background: rgba(255,255,255,0.9);
-            color: #c0392b;
+            color: var(--primary);
         }
 
         #lang-toggle button:not(.active):hover {
-            background: rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.15);
             color: #fff;
         }
 
@@ -118,8 +139,8 @@
             flex-wrap: wrap;
             gap: 4px;
             padding: 10px 16px;
-            background: #fafafa;
-            border-bottom: 1px solid #eee;
+            background: var(--primary-bg);
+            border-bottom: 1px solid var(--primary-border);
             min-height: 44px;
             flex-shrink: 0;
         }
@@ -127,7 +148,7 @@
         #navi button {
             background: none;
             border: none;
-            color: #e74c3c;
+            color: var(--primary-mid);
             font-size: 0.82rem;
             font-weight: 600;
             cursor: pointer;
@@ -141,7 +162,7 @@
         }
 
         #navi button:hover {
-            background: #fdecea;
+            background: var(--primary-border);
         }
 
         #navi button::before {
@@ -151,9 +172,9 @@
         #name {
             font-size: 1rem;
             font-weight: 700;
-            color: #2c3e50;
+            color: var(--primary);
             padding: 4px 8px;
-            background: #fdecea;
+            background: var(--primary-border);
             border-radius: 6px;
         }
 
@@ -168,22 +189,23 @@
             padding: 16px;
             gap: 10px;
             flex: 1;
+            background: var(--body-bg);
         }
 
         #list > li {
             width: 100%;
-            background: #fff;
-            border: 1.5px solid #e8ecef;
+            background: var(--surface);
+            border: 1.5px solid var(--border);
             border-radius: 12px;
             overflow: hidden;
             transition: box-shadow 0.2s, transform 0.15s;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 6px rgba(155,28,28,0.06);
             padding: 0;
             margin: 0;
         }
 
         #list > li:hover {
-            box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+            box-shadow: 0 6px 18px rgba(155,28,28,0.12);
             transform: translateY(-1px);
         }
 
@@ -196,12 +218,12 @@
             height: auto;
             line-height: 1.4;
             padding: 16px 20px;
-            background: #fff;
+            background: var(--surface);
             border: none;
             cursor: pointer;
             font-size: 1rem;
             font-weight: 600;
-            color: #2c3e50;
+            color: var(--text);
             font-family: inherit;
             transition: background 0.15s;
             text-align: left;
@@ -211,14 +233,14 @@
         #list > li > button::before {
             content: '›';
             font-size: 1.4rem;
-            color: #e74c3c;
+            color: var(--primary-mid);
             line-height: 1;
             flex-shrink: 0;
         }
 
         #list > li > button:hover {
-            background: #fdecea;
-            color: #c0392b;
+            background: var(--primary-bg);
+            color: var(--primary);
         }
 
         /* Contact info items */
@@ -233,9 +255,9 @@
         #info h3 {
             font-size: 0.95rem;
             font-weight: 700;
-            color: #2c3e50;
+            color: var(--text);
             padding-bottom: 6px;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid var(--border);
         }
 
         #info ol {
@@ -257,7 +279,7 @@
             height: auto;
             line-height: 1.4;
             padding: 10px 16px;
-            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            background: linear-gradient(135deg, var(--phone), var(--phone-light));
             border: none;
             border-radius: 8px;
             cursor: pointer;
@@ -282,44 +304,64 @@
         /* Search */
         #search-bar {
             padding: 12px 16px;
-            background: #fff;
-            border-bottom: 1px solid #eee;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
             flex-shrink: 0;
+            position: relative;
         }
 
         #search-bar input {
             width: 100%;
-            padding: 10px 14px 10px 38px;
-            border: 1.5px solid #e8ecef;
+            padding: 10px 36px 10px 38px;
+            border: 1.5px solid var(--border);
             border-radius: 10px;
             font-size: 0.95rem;
             font-family: inherit;
-            color: #2c3e50;
-            background: #f8f9fa url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23aaa' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E") no-repeat 12px center;
+            color: var(--text);
+            background: var(--body-bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23b07070' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E") no-repeat 12px center;
             outline: none;
             transition: border-color 0.15s, box-shadow 0.15s;
         }
 
         #search-bar input:focus {
-            border-color: #e74c3c;
-            box-shadow: 0 0 0 3px rgba(231,76,60,0.1);
-            background-color: #fff;
+            border-color: var(--primary-mid);
+            box-shadow: 0 0 0 3px rgba(185,28,28,0.1);
+            background-color: var(--surface);
         }
 
         #search-bar input::placeholder {
-            color: #aab;
+            color: var(--text-soft);
         }
+
+        /* hide browser's native clear button */
+        #search-bar input::-webkit-search-cancel-button { display: none; }
+
+        #search-clear {
+            display: none;
+            position: absolute;
+            right: 26px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--primary-border);
+            border: none;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 1rem;
+            line-height: 1;
+            color: var(--primary);
+            cursor: pointer;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            transition: background 0.15s;
+        }
+
+        #search-clear:hover { background: #FCA5A5; }
+
+        #search-clear.visible { display: flex; }
 
         /* Search results */
-        .search-section-label {
-            font-size: 0.7rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            color: #aaa;
-            padding: 4px 4px 2px;
-        }
-
         .search-result-item {
             display: flex;
             flex-direction: column;
@@ -328,7 +370,7 @@
             cursor: pointer;
             transition: background 0.15s !important;
             border: none !important;
-            background: #fff !important;
+            background: var(--surface) !important;
             width: 100%;
             text-align: left;
             font-family: inherit;
@@ -342,18 +384,18 @@
         }
 
         .search-result-item:hover {
-            background: #fdecea !important;
+            background: var(--primary-bg) !important;
         }
 
         .search-result-primary {
             font-size: 0.95rem;
             font-weight: 600;
-            color: #2c3e50;
+            color: var(--text);
         }
 
         .search-result-secondary {
             font-size: 0.78rem;
-            color: #888;
+            color: var(--text-soft);
         }
 
         .search-result-tag {
@@ -366,14 +408,15 @@
             margin-right: 4px;
         }
 
-        .tag-town   { background: #eaf4fb; color: #2980b9; }
-        .tag-station { background: #eafaf1; color: #27ae60; }
-        .tag-busline { background: #fef9e7; color: #d68910; }
+        /* All tags share the warm palette */
+        .tag-town    { background: var(--primary-bg);  color: var(--primary); }
+        .tag-station { background: #F0FDF4;             color: #166534; }
+        .tag-busline { background: var(--gold-bg);      color: var(--gold); }
 
         .no-results {
             text-align: center;
             padding: 32px 16px;
-            color: #aaa;
+            color: var(--text-soft);
             font-size: 0.9rem;
         }
     </style>
@@ -382,7 +425,37 @@
 <body>
     <div class="container">
         <div id="header">
-            <img src="logo.png" alt="Away Pyay Logo">
+            <svg id="header-icon" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" aria-label="Highway Express Bus Info">
+                <!-- Road -->
+                <rect x="4" y="38" width="48" height="10" rx="3" fill="rgba(255,255,255,0.25)"/>
+                <!-- Road dashes -->
+                <rect x="10" y="42" width="7" height="2" rx="1" fill="rgba(255,255,255,0.6)"/>
+                <rect x="24" y="42" width="7" height="2" rx="1" fill="rgba(255,255,255,0.6)"/>
+                <rect x="38" y="42" width="7" height="2" rx="1" fill="rgba(255,255,255,0.6)"/>
+                <!-- Bus body -->
+                <rect x="7" y="14" width="34" height="24" rx="4" fill="white"/>
+                <!-- Bus roof curve -->
+                <rect x="9" y="12" width="30" height="5" rx="3" fill="rgba(255,255,255,0.85)"/>
+                <!-- Windows row -->
+                <rect x="10" y="17" width="7" height="6" rx="1.5" fill="#B45309"/>
+                <rect x="20" y="17" width="7" height="6" rx="1.5" fill="#B45309"/>
+                <rect x="30" y="17" width="7" height="6" rx="1.5" fill="#B45309"/>
+                <!-- Door -->
+                <rect x="20" y="26" width="8" height="9" rx="1.5" fill="#e8e8e8"/>
+                <circle cx="27" cy="31" r="1" fill="#aaa"/>
+                <!-- Front grill line -->
+                <rect x="9" y="26" width="8" height="2" rx="1" fill="#ddd"/>
+                <rect x="9" y="29" width="8" height="2" rx="1" fill="#ddd"/>
+                <!-- Wheels -->
+                <circle cx="14" cy="39" r="4" fill="#1C0A0A"/>
+                <circle cx="14" cy="39" r="2" fill="#786060"/>
+                <circle cx="34" cy="39" r="4" fill="#1C0A0A"/>
+                <circle cx="34" cy="39" r="2" fill="#786060"/>
+                <!-- Info badge -->
+                <circle cx="44" cy="13" r="8" fill="#B45309"/>
+                <rect x="43" y="10" width="2" height="2" rx="1" fill="white"/>
+                <rect x="43" y="13" width="2" height="5" rx="1" fill="white"/>
+            </svg>
             <div id="header-text">
                 <h3>Away Pyay <span>အဝေးပြေး</span></h3>
             </div>
@@ -390,6 +463,10 @@
                 <button id="btn-en" class="active" onclick="setLang('en')">EN</button>
                 <button id="btn-mm" onclick="setLang('mm')">မြန်မာ</button>
             </div>
+        </div>
+        <div id="search-bar">
+            <input type="search" id="search-input" autocomplete="off" spellcheck="false">
+            <button id="search-clear" onclick="clearSearch()" title="Clear">&times;</button>
         </div>
         <div class="nav" id="navi"></div>
         <ul id="list"></ul>
@@ -408,12 +485,22 @@
                 towns: 'Towns',
                 stations: 'Stations',
                 buslines: 'Bus Lines',
+                search_placeholder: 'Search towns, stations, bus lines…',
+                no_results: 'No results found',
+                tag_town: 'Town',
+                tag_station: 'Station',
+                tag_busline: 'Bus Line',
             },
             mm: {
                 home: 'ပင်မစာမျက်နှာ',
                 towns: 'မြို့များ',
                 stations: 'ကားကွင်းများ',
                 buslines: 'ကားလိုင်းများ',
+                search_placeholder: 'မြို့၊ ကားကွင်း၊ ကားလိုင်း ရှာရန်…',
+                no_results: 'ရလဒ်မတွေ့ပါ',
+                tag_town: 'မြို့',
+                tag_station: 'ကားကွင်း',
+                tag_busline: 'ကားလိုင်း',
             }
         };
 
@@ -427,8 +514,10 @@
             document.getElementById('btn-en').classList.toggle('active', l === 'en');
             document.getElementById('btn-mm').classList.toggle('active', l === 'mm');
             document.documentElement.lang = l === 'mm' ? 'my' : 'en';
-            // re-render current view
-            if (typeof currentView === 'function') currentView();
+            document.getElementById('search-input').placeholder = t[l].search_placeholder;
+            var q = document.getElementById('search-input').value.trim();
+            if (q) renderSearch(q);
+            else if (typeof currentView === 'function') currentView();
         }
 
         var currentView = null;
@@ -520,6 +609,95 @@
             }).join('');
         }
 
+        // ── Search ──────────────────────────────────────────────
+        function matches(item, q) {
+            return (item.en_name && item.en_name.toLowerCase().includes(q)) ||
+                   (item.mm_name && item.mm_name.includes(q));
+        }
+
+        function renderSearch(q) {
+            var ql = q.toLowerCase();
+            var results = [];
+
+            // Towns
+            towns.forEach(town => {
+                if (matches(town, ql)) {
+                    results.push({ type: 'town', item: town });
+                }
+                // Stations inside towns
+                town.stations.forEach(station => {
+                    if (matches(station, ql)) {
+                        results.push({ type: 'station', item: station, town: town });
+                    }
+                    // Bus lines inside stations
+                    station.bus_lines.forEach(bl => {
+                        if (matches(bl, ql) && !results.find(r => r.type === 'busline' && r.item.en_name === bl.en_name)) {
+                            results.push({ type: 'busline', item: bl });
+                        }
+                    });
+                });
+            });
+
+            // Also search top-level bus_lines list
+            bus_lines.forEach(bl => {
+                if (matches(bl, ql) && !results.find(r => r.type === 'busline' && r.item.en_name === bl.en_name)) {
+                    results.push({ type: 'busline', item: bl });
+                }
+            });
+
+            document.getElementById('navi').innerHTML = '';
+            if (results.length === 0) {
+                document.getElementById('list').innerHTML =
+                    `<li><div class="no-results">${t[lang].no_results}</div></li>`;
+                return;
+            }
+
+            document.getElementById('list').innerHTML = results.map(r => {
+                var primary = name(r.item);
+                var tag, tagClass, secondary = '', onclick;
+
+                if (r.type === 'town') {
+                    tag = t[lang].tag_town; tagClass = 'tag-town';
+                    secondary = r.item.stations.map(s => name(s)).join(' · ');
+                    onclick = `getStationsByTown('${encodeURIComponent(JSON.stringify(r.item))}')`;
+                } else if (r.type === 'station') {
+                    tag = t[lang].tag_station; tagClass = 'tag-station';
+                    secondary = name(r.town);
+                    onclick = `getBusLinesByStation('${encodeURIComponent(JSON.stringify(r.item))}', 2)`;
+                } else {
+                    tag = t[lang].tag_busline; tagClass = 'tag-busline';
+                    secondary = r.item.contacts.map(c => name(c)).join(' · ');
+                    onclick = `getContactsByBusline('${encodeURIComponent(JSON.stringify(r.item))}')`;
+                }
+
+                return `<li><button class="search-result-item" onclick="${onclick}">
+                    <span class="search-result-primary">
+                        <span class="search-result-tag ${tagClass}">${tag}</span>${primary}
+                    </span>
+                    ${secondary ? `<span class="search-result-secondary">${secondary}</span>` : ''}
+                </button></li>`;
+            }).join('');
+        }
+
+        function clearSearch() {
+            var input = document.getElementById('search-input');
+            input.value = '';
+            document.getElementById('search-clear').classList.remove('visible');
+            init();
+            input.focus();
+        }
+
+        document.getElementById('search-input').addEventListener('input', function() {
+            var q = this.value.trim();
+            document.getElementById('search-clear').classList.toggle('visible', q.length > 0);
+            if (q) {
+                renderSearch(q);
+            } else {
+                if (typeof currentView === 'function') currentView();
+            }
+        });
+
+        // ── Init ─────────────────────────────────────────────────
         // apply saved language on load
         setLang(lang);
         init();
