@@ -5,29 +5,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Away Pyay အဝေးပြေး</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 56 56' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='56' height='56' rx='10' fill='%239B1C1C'/%3E%3Crect x='4' y='38' width='48' height='10' rx='3' fill='rgba(255,255,255,0.2)'/%3E%3Crect x='10' y='42' width='7' height='2' rx='1' fill='rgba(255,255,255,0.6)'/%3E%3Crect x='24' y='42' width='7' height='2' rx='1' fill='rgba(255,255,255,0.6)'/%3E%3Crect x='38' y='42' width='7' height='2' rx='1' fill='rgba(255,255,255,0.6)'/%3E%3Crect x='7' y='14' width='34' height='24' rx='4' fill='white'/%3E%3Crect x='9' y='12' width='30' height='5' rx='3' fill='rgba(255,255,255,0.85)'/%3E%3Crect x='10' y='17' width='7' height='6' rx='1.5' fill='%23B45309'/%3E%3Crect x='20' y='17' width='7' height='6' rx='1.5' fill='%23B45309'/%3E%3Crect x='30' y='17' width='7' height='6' rx='1.5' fill='%23B45309'/%3E%3Crect x='20' y='26' width='8' height='9' rx='1.5' fill='%23f0e0e0'/%3E%3Ccircle cx='14' cy='39' r='4' fill='%231C0A0A'/%3E%3Ccircle cx='14' cy='39' r='2' fill='%23786060'/%3E%3Ccircle cx='34' cy='39' r='4' fill='%231C0A0A'/%3E%3Ccircle cx='34' cy='39' r='2' fill='%23786060'/%3E%3Ccircle cx='44' cy='13' r='8' fill='%23B45309'/%3E%3Crect x='43' y='10' width='2' height='2' rx='1' fill='white'/%3E%3Crect x='43' y='13' width='2' height='5' rx='1' fill='white'/%3E%3C/svg%3E">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg viewBox='0 0 56 56' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='56' height='56' rx='10' fill='%23E63839'/%3E%3Crect x='4' y='38' width='48' height='10' rx='3' fill='rgba(255,255,255,0.2)'/%3E%3Crect x='10' y='42' width='7' height='2' rx='1' fill='rgba(255,255,255,0.6)'/%3E%3Crect x='24' y='42' width='7' height='2' rx='1' fill='rgba(255,255,255,0.6)'/%3E%3Crect x='38' y='42' width='7' height='2' rx='1' fill='rgba(255,255,255,0.6)'/%3E%3Crect x='7' y='14' width='34' height='24' rx='4' fill='white'/%3E%3Crect x='9' y='12' width='30' height='5' rx='3' fill='rgba(255,255,255,0.85)'/%3E%3Crect x='10' y='17' width='7' height='6' rx='1.5' fill='%2357CCD5'/%3E%3Crect x='20' y='17' width='7' height='6' rx='1.5' fill='%2357CCD5'/%3E%3Crect x='30' y='17' width='7' height='6' rx='1.5' fill='%2357CCD5'/%3E%3Crect x='20' y='26' width='8' height='9' rx='1.5' fill='%23EDE8F5'/%3E%3Ccircle cx='14' cy='39' r='4' fill='%23204B78'/%3E%3Ccircle cx='14' cy='39' r='2' fill='%234B77AA'/%3E%3Ccircle cx='34' cy='39' r='4' fill='%23204B78'/%3E%3Ccircle cx='34' cy='39' r='2' fill='%234B77AA'/%3E%3Ccircle cx='44' cy='13' r='8' fill='%23FABE3C'/%3E%3Crect x='43' y='10' width='2' height='2' rx='1' fill='white'/%3E%3Crect x='43' y='13' width='2' height='5' rx='1' fill='white'/%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Myanmar:wght@400;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary:       #9B1C1C;   /* deep crimson */
-            --primary-mid:   #B91C1C;
-            --primary-light: #EF4444;
-            --primary-bg:    #FEF2F2;   /* very light crimson tint */
-            --primary-border:#FECACA;
+            /* ── Palette from fashion swatch ─────────────────────
+               #E63839 deep red   #F25451 red       #F68E37 orange
+               #FABE3C golden     #F37E66 coral      #ABD663 lime
+               #76CC8F mint       #57CCD5 cyan       #4B77AA steel blue
+               #204B78 navy       #939393 gray       #DE448A hot pink
+               ──────────────────────────────────────────────────── */
 
-            --gold:          #B45309;   /* warm amber — used for info badge, busline tag */
-            --gold-bg:       #FEF3C7;
+            --primary:        #E63839;  /* deep red — brand color            */
+            --primary-mid:    #F25451;  /* red — hover/active states         */
+            --primary-light:  #F37E66;  /* coral — softer accent             */
+            --primary-bg:     #FFF0EE;  /* very light coral tint             */
+            --primary-border: #FFCDC9;  /* light coral border                */
 
-            --body-bg:       #FDF7F7;   /* warm cream, harmonizes with red */
-            --surface:       #FFFFFF;
-            --border:        #F3E4E4;   /* warm gray border */
+            --gold:           #FABE3C;  /* golden — bus line tag, info badge */
+            --gold-bg:        #FFF8DC;  /* light golden bg                   */
 
-            --text:          #1C0A0A;   /* warm near-black */
-            --text-soft:     #78645F;   /* warm gray */
+            --body-bg:        #FAFCFF;  /* near-white with cool tint         */
+            --surface:        #FFFFFF;
+            --border:         #EDE8F5;  /* soft lavender-gray border         */
 
-            --phone:         #166534;   /* forest green — universal call color */
-            --phone-light:   #16A34A;
+            --text:           #204B78;  /* navy — strong readable text       */
+            --text-soft:      #939393;  /* gray — secondary text             */
+
+            --phone:          #2EAA04;  /* bright green — call button        */
+            --phone-light:    #76CC8F;  /* mint green — call button grad     */
+
+            --cyan:           #57CCD5;  /* cyan — town tag                   */
+            --cyan-bg:        #E8F9FA;
+            --lime:           #ABD663;  /* lime — station tag                */
+            --lime-bg:        #F3FBEA;
         }
 
         *, *::before, *::after {
@@ -49,7 +61,7 @@
             background: var(--surface);
             display: flex;
             flex-direction: column;
-            box-shadow: 0 0 40px rgba(155,28,28,0.1);
+            box-shadow: 0 0 40px rgba(230,56,57,0.12);
         }
 
         @media screen and (max-width: 520px) {
@@ -63,7 +75,7 @@
         #header {
             display: flex;
             align-items: center;
-            background: linear-gradient(135deg, #7F1D1D 0%, #9B1C1C 50%, #B91C1C 100%);
+            background: linear-gradient(135deg, #E63839 0%, #F25451 45%, #F68E37 100%);
             padding: 12px 16px;
             gap: 12px;
             flex-shrink: 0;
@@ -123,8 +135,8 @@
         }
 
         #lang-toggle button.active {
-            background: rgba(255,255,255,0.9);
-            color: var(--primary);
+            background: rgba(255,255,255,0.92);
+            color: #E63839;
         }
 
         #lang-toggle button:not(.active):hover {
@@ -199,13 +211,13 @@
             border-radius: 12px;
             overflow: hidden;
             transition: box-shadow 0.2s, transform 0.15s;
-            box-shadow: 0 2px 6px rgba(155,28,28,0.06);
+            box-shadow: 0 2px 6px rgba(32,75,120,0.07);
             padding: 0;
             margin: 0;
         }
 
         #list > li:hover {
-            box-shadow: 0 6px 18px rgba(155,28,28,0.12);
+            box-shadow: 0 6px 18px rgba(32,75,120,0.14);
             transform: translateY(-1px);
         }
 
@@ -408,10 +420,9 @@
             margin-right: 4px;
         }
 
-        /* All tags share the warm palette */
-        .tag-town    { background: var(--primary-bg);  color: var(--primary); }
-        .tag-station { background: #F0FDF4;             color: #166534; }
-        .tag-busline { background: var(--gold-bg);      color: var(--gold); }
+        .tag-town    { background: var(--cyan-bg);  color: #2A9DAA; }   /* cyan  */
+        .tag-station { background: var(--lime-bg);  color: #6B9A1F; }   /* lime  */
+        .tag-busline { background: var(--gold-bg);  color: #C48A00; }   /* gold  */
 
         .no-results {
             text-align: center;
@@ -437,22 +448,22 @@
                 <!-- Bus roof curve -->
                 <rect x="9" y="12" width="30" height="5" rx="3" fill="rgba(255,255,255,0.85)"/>
                 <!-- Windows row -->
-                <rect x="10" y="17" width="7" height="6" rx="1.5" fill="#B45309"/>
-                <rect x="20" y="17" width="7" height="6" rx="1.5" fill="#B45309"/>
-                <rect x="30" y="17" width="7" height="6" rx="1.5" fill="#B45309"/>
+                <rect x="10" y="17" width="7" height="6" rx="1.5" fill="#57CCD5"/>
+                <rect x="20" y="17" width="7" height="6" rx="1.5" fill="#57CCD5"/>
+                <rect x="30" y="17" width="7" height="6" rx="1.5" fill="#57CCD5"/>
                 <!-- Door -->
-                <rect x="20" y="26" width="8" height="9" rx="1.5" fill="#e8e8e8"/>
-                <circle cx="27" cy="31" r="1" fill="#aaa"/>
+                <rect x="20" y="26" width="8" height="9" rx="1.5" fill="#EDE8F5"/>
+                <circle cx="27" cy="31" r="1" fill="#939393"/>
                 <!-- Front grill line -->
-                <rect x="9" y="26" width="8" height="2" rx="1" fill="#ddd"/>
-                <rect x="9" y="29" width="8" height="2" rx="1" fill="#ddd"/>
+                <rect x="9" y="26" width="8" height="2" rx="1" fill="#EDE8F5"/>
+                <rect x="9" y="29" width="8" height="2" rx="1" fill="#EDE8F5"/>
                 <!-- Wheels -->
-                <circle cx="14" cy="39" r="4" fill="#1C0A0A"/>
-                <circle cx="14" cy="39" r="2" fill="#786060"/>
-                <circle cx="34" cy="39" r="4" fill="#1C0A0A"/>
-                <circle cx="34" cy="39" r="2" fill="#786060"/>
+                <circle cx="14" cy="39" r="4" fill="#204B78"/>
+                <circle cx="14" cy="39" r="2" fill="#4B77AA"/>
+                <circle cx="34" cy="39" r="4" fill="#204B78"/>
+                <circle cx="34" cy="39" r="2" fill="#4B77AA"/>
                 <!-- Info badge -->
-                <circle cx="44" cy="13" r="8" fill="#B45309"/>
+                <circle cx="44" cy="13" r="8" fill="#FABE3C"/>
                 <rect x="43" y="10" width="2" height="2" rx="1" fill="white"/>
                 <rect x="43" y="13" width="2" height="5" rx="1" fill="white"/>
             </svg>
