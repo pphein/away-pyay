@@ -919,5 +919,191 @@ var bus_lines = [
                 ]
             }
         ]
+    },
+    {
+        "id": 11,
+        "status": true,
+        "source": "https://www.highclassexpress.com",
+        "en_name": "High Class Express",
+        "mm_name": "ဟိုက်ကလပ်စ် ခရီးသည်ပို့ဆောင်ရေး",
+        "contacts": [
+            {
+                "id": 1,
+                "status": true,
+                "en_name": "Yangon (Aung Mingalar)",
+                "mm_name": "ရန်ကုန် အောင်မင်္ဂလာကားဂိတ်",
+                "phones": [
+                    "09420225777",
+                    "09420225888",
+                    "09793211170"
+                ]
+            },
+            {
+                "id": 2,
+                "status": true,
+                "en_name": "Myitkyina",
+                "mm_name": "မြစ်ကြီးနား ကားဂိတ်",
+                "phones": [
+                    "09793211130",
+                    "09440064233"
+                ]
+            },
+            {
+                "id": 3,
+                "status": true,
+                "en_name": "Bhamo",
+                "mm_name": "ဗန်းမော် ကားဂိတ်",
+                "phones": [
+                    "09793211140",
+                    "09793211101"
+                ]
+            },
+            {
+                "id": 4,
+                "status": true,
+                "en_name": "Kalay",
+                "mm_name": "ကလေ ကားဂိတ်",
+                "phones": [
+                    "09420225999",
+                    "07322662"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 12,
+        "status": true,
+        "source": "https://www.myanmaryp.com/company/34150/Win_Express",
+        "en_name": "Win Express",
+        "mm_name": "ဝင်း အဝေးပြေး",
+        "contacts": [
+            {
+                "id": 1,
+                "status": true,
+                "en_name": "Yangon (Aung Mingalar)",
+                "mm_name": "ရန်ကုန် အောင်မင်္ဂလာကားဂိတ်",
+                "phones": [
+                    "0973207073",
+                    "0973208987",
+                    "01706886",
+                    "01722287",
+                    "01637412"
+                ]
+            },
+            {
+                "id": 2,
+                "status": true,
+                "en_name": "Mawlamyine",
+                "mm_name": "မော်လမြိုင် ကားဂိတ်",
+                "phones": [
+                    "0973207073"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 13,
+        "status": true,
+        "source": "http://www.yangondirectory.com/en/categories-index/yangon-region/mingalardon/135-buses-highway/L147460",
+        "en_name": "Lumbini Express",
+        "mm_name": "လုမ္ဗိနီ အဝေးပြေး",
+        "contacts": [
+            {
+                "id": 1,
+                "status": true,
+                "en_name": "Yangon (Aung Mingalar)",
+                "mm_name": "ရန်ကုန် အောင်မင်္ဂလာကားဂိတ်",
+                "phones": [
+                    "01637690",
+                    "01637691",
+                    "0933023339",
+                    "09977908011",
+                    "09977908022"
+                ]
+            },
+            {
+                "id": 2,
+                "status": true,
+                "en_name": "Mandalay",
+                "mm_name": "မန္တလေး ကားဂိတ်",
+                "phones": [
+                    "09977908011"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 14,
+        "status": true,
+        "source": "https://myatmandalartun.com",
+        "en_name": "Myat Mandalar Tun Express",
+        "mm_name": "မြတ်မန္တလာတွန်း အဝေးပြေး",
+        "contacts": [
+            {
+                "id": 1,
+                "status": true,
+                "en_name": "Yangon (Aung Mingalar)",
+                "mm_name": "ရန်ကုန် အောင်မင်္ဂလာကားဂိတ်",
+                "phones": [
+                    "092050907",
+                    "092050919"
+                ]
+            },
+            {
+                "id": 2,
+                "status": true,
+                "en_name": "Mandalay",
+                "mm_name": "မန္တလေး ကားဂိတ်",
+                "phones": [
+                    "09977908011"
+                ]
+            },
+            {
+                "id": 3,
+                "status": true,
+                "en_name": "Pathein",
+                "mm_name": "ပုသိမ် ကားဂိတ်",
+                "phones": [
+                    "092031413"
+                ]
+            },
+            {
+                "id": 4,
+                "status": true,
+                "en_name": "Myitkyina",
+                "mm_name": "မြစ်ကြီးနား ကားဂိတ်",
+                "phones": [
+                    "09440064233"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 15,
+        "status": true,
+        "source": "https://myanmaryellowpages.biz/company_detail/8352/138",
+        "en_name": "Shwe Myanmar Express",
+        "mm_name": "ရွှေမြန်မာ အဝေးပြေး",
+        "contacts": [
+            {
+                "id": 1,
+                "status": true,
+                "en_name": "Yangon (Aung Mingalar)",
+                "mm_name": "ရန်ကုန် အောင်မင်္ဂလာကားဂိတ်",
+                "phones": [
+                    "095661309",
+                    "09791588860"
+                ]
+            },
+            {
+                "id": 2,
+                "status": true,
+                "en_name": "Hpa-An",
+                "mm_name": "ဘားအံ ကားဂိတ်",
+                "phones": [
+                    "095661309"
+                ]
+            }
+        ]
     }
 ]
